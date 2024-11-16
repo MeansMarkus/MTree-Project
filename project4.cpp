@@ -7,7 +7,7 @@ class DuplicateInsertion {};
 class NotFoundException {};
 
 // Templated MTree class
-template <typename DT>
+template <classname DT>
 class MTree {
 protected:
     int M;  // Maximum number of children per node (M-way tree)
