@@ -61,6 +61,32 @@ public:
 
     // Rebuild the tree from a sorted vector of values
     void buildTree(vector<DT>& input_values) {
+         if (input_values.size() <= M - 1) {
+             values = input_values;
+               } else {
+                 int D = input_values.size() / M;
+                   for (int i = 0; i < M; i++) {
+                          int start = D * i;
+                               cout << "start: " << start << " - ";
+                                     int end;
+                                     if (i == M - 1) {
+                                               end = input_values.size() - 1;
+                                                  cout << "end: " << end << endl; 
+                                                   } else {
+                                                       end = start + D - 1;
+                                                          cout << "end: " << end << endl;
+                                                          values.push_back(input_values[end]);
+                                                           }
+                                                               vector<DT> child_values(input_values.begin() + start, input_values.begin() + end + 1);
+                                                                    MTree<DT>* child = new MTree<DT>(M);
+                                                                    child->buildTree(child_values);
+                                                                      children.push_back(child);
+                   }
+               }
+    } 
+
+
+
     }
     
     bool find (DT& value){
